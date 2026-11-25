@@ -47,13 +47,22 @@ preprocessor = ColumnTransformer([
 ])
 # 5. Compare three ML algorithms
 models = {
-    "Decision Tree": DecisionTreeClassifier(random_state=42),
-    "Random Forest": RandomForestClassifier(
-        n_estimators=100, random_state=42, n_jobs=-1
+    "Decision Tree": DecisionTreeClassifier(
+        max_depth=20,
+        min_samples_leaf=3,
+        random_state=42
     ),
+
+    "Random Forest": RandomForestClassifier(
+        n_estimators=20,
+        max_depth=20,
+        min_samples_leaf=3,
+        random_state=42,
+        n_jobs=1
+    ),
+
     "KNN": KNeighborsClassifier(n_neighbors=5)
 }
-
 results = []
 best_score = -1
 best_model = None
