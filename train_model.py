@@ -37,15 +37,14 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # 4. Convert text answers into numerical features
 preprocessor = ColumnTransformer([
-    ("technical", TfidfVectorizer(), "Technical_Skills"),
-    ("soft", TfidfVectorizer(), "Soft_Skills"),
-    ("interests", TfidfVectorizer(), "Fields_of_Interest"),
+    ("technical", TfidfVectorizer(max_features=1000, min_df=2), "Technical_Skills"),
+    ("soft", TfidfVectorizer(max_features=1000, min_df=2), "Soft_Skills"),
+    ("interests", TfidfVectorizer(max_features=100, min_df=2), "Fields_of_Interest"),
     ("work_style", OneHotEncoder(handle_unknown="ignore"),
      ["Preferred_Work_Style"]),
     ("work_type", OneHotEncoder(handle_unknown="ignore"),
      ["Work_Type_Interest"])
 ])
-
 # 5. Compare three ML algorithms
 models = {
     "Decision Tree": DecisionTreeClassifier(random_state=42),
