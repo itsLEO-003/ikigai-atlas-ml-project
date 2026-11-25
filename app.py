@@ -29,7 +29,7 @@ CORS(app)
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-model = joblib.load(os.path.join(BASE_DIR, "best_career_model.pkl"))
+model = joblib.load(os.path.join(BASE_DIR, "best_career_model_compressed.pkl"))
 
 
 @app.route("/")
